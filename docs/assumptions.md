@@ -1,4 +1,4 @@
-# Assumptions - EAD-CCF-Cashflow-Lending
+# Assumptions - EAD-CCF-commercial
 
 - Uses synthetic sample records only.
 - Does not rely on hidden internal data, sibling paths, or local Windows paths.

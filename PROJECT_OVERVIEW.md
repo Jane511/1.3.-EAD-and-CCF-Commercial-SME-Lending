@@ -1,10 +1,10 @@
-# Project Overview - EAD-CCF-Cashflow-Lending
+# Project Overview - EAD-CCF-commercial
 
 This folder has been rebuilt around a clean README, docs, notebooks, modular Python pipeline, sample outputs, and validation checks.
 
 ## Portfolio role
 
-EAD-CCF-Cashflow-Lending is the Exposure at Default and CCF engine for SME products.
+`EAD-CCF-commercial` is the Exposure at Default and CCF engine for SME products.
 
 ## Rebuilt deliverables
 

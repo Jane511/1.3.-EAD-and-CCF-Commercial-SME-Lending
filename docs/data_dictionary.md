@@ -1,4 +1,4 @@
-# Data Dictionary - EAD-CCF-Cashflow-Lending
+# Data Dictionary - EAD-CCF-commercial
 
 | Field | Description |
 | --- | --- |

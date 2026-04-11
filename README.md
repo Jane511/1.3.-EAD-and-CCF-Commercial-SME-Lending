@@ -1,4 +1,4 @@
-# EAD-CCF-Cashflow-Lending
+# EAD-CCF-commercial
 
 ## What this repo is
 
@@ -12,10 +12,10 @@ Upstream inputs:
 - utilisation history where available
 
 Downstream consumers:
-- Expected-Loss-Engine-Australia
-- Stress-Testing-Credit-Portfolio
-- Risk-Based-Pricing-Credit
-- RWA-Capital-Credit-Risk
+- `expected-loss-engine-commercial`
+- `stress-testing-commercial`
+- `RAROC-pricing-and-return-hurdle`
+- `RWA-capital-commercial`
 
 ## Inputs
 
