@@ -1,6 +1,6 @@
-# Commercial EAD & CCF Project
+# Commercial Exposure at Default & CCF Project
 
-This repository is the Exposure at Default and Credit Conversion Factor layer in the commercial credit-risk stack. It uses synthetic facility data, utilisation assumptions, and product-level CCF logic to estimate funded and unfunded exposure under a bank-style lending workflow. The main outputs are facility-level EAD tables, product-level CCF views, and validation artifacts that feed downstream expected loss, stress testing, pricing, and capital analysis.
+This repository is the EAD and Credit Conversion Factor layer in the public commercial credit-risk stack. It uses synthetic facility data, utilisation assumptions, and product-level CCF logic to estimate funded and unfunded exposure under a bank-style lending workflow. The main outputs feed downstream expected loss, stress testing, pricing, and capital analysis.
 
 ## What this repo is
 
@@ -9,15 +9,20 @@ This project demonstrates how a commercial lending portfolio can be translated i
 ## Where it sits in the stack
 
 Upstream inputs:
-- facility and borrower portfolio data
-- product limit and drawn-balance information
-- utilisation and CCF assumptions where detailed behavioural history is unavailable
+- facility and limit inputs staged under `data/`
+- product utilisation and CCF assumptions maintained in-repo
 
 Downstream consumers:
 - `expected-loss-engine-commercial`
 - `stress-testing-commercial`
 - `RAROC-pricing-and-return-hurdle`
 - `RWA-capital-commercial`
+
+## Key inputs
+
+- facility and borrower portfolio data
+- product limit, drawn-balance, and limit-utilisation information
+- CCF and utilisation assumptions where detailed behavioural history is unavailable
 
 ## Key outputs
 

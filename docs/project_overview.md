@@ -1,4 +1,4 @@
-# Project Overview - EAD-CCF-commercial
+# Project Overview
 
 `EAD-CCF-commercial` is the commercial exposure-at-default and credit-conversion-factor engine in the public credit-risk stack.
 
