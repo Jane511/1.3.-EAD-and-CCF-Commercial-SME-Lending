@@ -1,6 +1,6 @@
 # Commercial Exposure at Default & CCF Project
 
-This repository is the EAD and Credit Conversion Factor layer in the public commercial credit-risk stack. It uses synthetic facility data, utilisation assumptions, and product-level CCF logic to estimate funded and unfunded exposure under a bank-style lending workflow. The main outputs feed downstream expected loss, stress testing, pricing, and capital analysis.
+This repository is the EAD and Credit Conversion Factor layer in the public commercial credit-risk stack. It uses synthetic facility data, utilisation assumptions, and product-level CCF logic to estimate funded and unfunded exposure under lending workflows that are relevant to both bank-style risk frameworks and practical lending decisioning. The main outputs feed downstream expected loss, stress testing, pricing, and capital analysis.
 
 ## What this repo is
 
@@ -17,6 +17,48 @@ Downstream consumers:
 - `stress-testing-commercial`
 - `RAROC-pricing-and-return-hurdle`
 - `RWA-capital-commercial`
+
+## How this is used in practice
+
+This project can be applied in:
+
+### Bank / Institutional context
+
+- EAD estimation for expected loss, stress testing, and capital-style frameworks
+- Portfolio exposure measurement across funded and unfunded facilities
+- Utilisation and limit analysis for structured risk review
+
+### Non-bank / Fintech context
+
+- Exposure measurement for pricing and approval strategy on revolving or contingent products
+- Limit-usage assumptions for portfolio performance and risk-adjusted decisioning
+- Early portfolio monitoring of drawn versus undrawn exposure risk
+
+## Example input files (already in the repo)
+
+- `data/raw/exposure_master.csv`: demo facility-level limits and drawn balances (funded + unfunded)
+- `data/raw/demo_portfolio.csv`: lightweight portfolio extract used by the demo pipeline
+- `data/manual/ccf_rules.csv`: product-level CCF rules and utilisation assumptions
+
+## Example output files (already in the repo)
+
+- `outputs/tables/ead_by_facility.csv`: facility-level EAD view used downstream
+- `outputs/tables/ccf_by_product.csv`: product-level CCF summary (sanity-check friendly)
+- `outputs/tables/utilisation_uplift_tables.csv`: utilisation and uplift curves used by the EAD build
+- `outputs/tables/pipeline_validation_report.csv`: pass/fail checks for required fields and totals
+- `outputs/reports/pipeline_summary.md`: short run summary and file index
+- `outputs/samples/demo_input.csv`: small sample input for quick reviewer inspection
+
+## Example business use case
+
+A credit portfolio team needs a consistent “exposure at default” view before building expected loss, stress tests, pricing packs, or capital summaries. This repo turns limits + drawn balances into a facility-level EAD dataset with a clear, reviewable CCF contract.
+
+## How these outputs feed downstream repos
+
+- `expected-loss-engine-commercial`: uses `outputs/tables/ead_by_facility.csv` as the exposure leg of EL.
+- `stress-testing-commercial`: uses `outputs/tables/ead_by_facility.csv` as the base EAD input before applying scenario uplifts.
+- `RAROC-pricing-and-return-hurdle`: uses EAD-derived exposure to translate EL and stress into cost-of-risk and hurdle pricing.
+- `RWA-capital-commercial`: uses `outputs/tables/ead_by_facility.csv` as the exposure input for RWA and capital summaries.
 
 ## Key inputs
 
@@ -44,15 +86,35 @@ Downstream consumers:
 
 ## How to run
 
+Quick start:
+
 ```powershell
+pip install -r requirements.txt
 python -m src.codex_run_pipeline
 ```
 
-Or:
+After the run, start with:
+
+- `outputs/reports/pipeline_summary.md`
+- `outputs/tables/ead_by_facility.csv`
+- `outputs/tables/pipeline_validation_report.csv`
+
+Run validation tests:
+
+```powershell
+python -m pytest
+```
+
+Alternative (wrapper script):
 
 ```powershell
 python scripts/run_codex_pipeline.py
 ```
+
+## Testing and validation
+
+- `tests/test_codex_instruction_pipeline.py` runs the demo pipeline and asserts the expected output files are written.
+- `outputs/tables/pipeline_validation_report.csv` captures the same checks in a reviewer-friendly table.
 
 ## Limitations / Demo-Only Note
 
